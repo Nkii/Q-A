@@ -1,0 +1,6 @@
+{% include 'default/_form.html.twig' with {
+    page_title: 'title_user_edit'|trans({'%email%': user.email|default('')}),
+    form: form,
+    submit_label: 'action_edit'|trans,
+    back_to_list_path: 'question_index',
+} %}
