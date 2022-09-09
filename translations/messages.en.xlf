@@ -190,6 +190,14 @@
                 <source>message_form_error</source>
                 <target>message form error</target>
             </trans-unit>
+            <trans-unit id="title_user_details">
+                <source>title_user_details</source>
+                <target>User details</target>
+            </trans-unit>
+            <trans-unit id="title_user_edit">
+                <source>title_user_edit</source>
+                <target>User edit</target>
+            </trans-unit>
 
 
 

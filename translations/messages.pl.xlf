@@ -195,6 +195,14 @@
                 <source>message_form_error</source>
                 <target>Hasła nie zgadzja się. Spróbuj ponownie</target>
             </trans-unit>
+            <trans-unit id="title_user_details">
+                <source>title_user_details</source>
+                <target>Użytkownik - szczegóły</target>
+            </trans-unit>
+            <trans-unit id="title_user_edit">
+                <source>title_user_edit</source>
+                <target>Zmień hasło</target>
+            </trans-unit>
 
         </body>
     </file>
