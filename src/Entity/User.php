@@ -9,9 +9,6 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Validator\Constraints as Assert;
-//use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
-//use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
-////use Doctrine\ORM\Mapping\UniqueConstraint;
 
 /**
  * Class User.
@@ -19,7 +16,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 #[ORM\Entity(repositoryClass: UserRepository::class)]
 #[ORM\Table(name: 'users')]
 #[ORM\UniqueConstraint(name: 'email_idx', columns: ['email'])]
-class User implements UserInterface, \Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface
+class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
     /**
      * Role User.
@@ -131,6 +128,8 @@ class User implements UserInterface, \Symfony\Component\Security\Core\User\Passw
      * Getter for roles.
      *
      * @see UserInterface
+     *
+     * @return array<int, string> Roles
      */
     public function getRoles(): array
     {

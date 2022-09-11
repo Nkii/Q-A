@@ -3,35 +3,59 @@
 namespace App\Entity;
 
 use App\Repository\QuestionRepository;
+use DateTimeInterface;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
+use JetBrains\PhpStorm\Pure;
+use Symfony\Component\Validator\Constraints as Assert;
 
+/**
+ * Class Question.
+ */
 #[ORM\Entity(repositoryClass: QuestionRepository::class)]
 class Question
 {
+    /**
+     * Primary key.
+     */
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(type: 'integer')]
-    private $id;
+    private ?int $id = null;
 
+    /**
+     * Title.
+     */
     #[ORM\Column(type: 'string', length: 255)]
-    private $title;
+    private string $title;
 
+    /**
+     * Created at.
+     */
     #[ORM\Column(type: 'datetime')]
     #[Gedmo\Timestampable(on: 'create')]
-    private $createdAt;
+    private ?DateTimeInterface $createdAt;
 
+    /**
+     * Answer.
+     */
     #[ORM\OneToMany(mappedBy: 'question', targetEntity: Answer::class, orphanRemoval: true)]
     private $answers;
 
+    /**
+     * Tag.
+     */
     #[ORM\ManyToMany(targetEntity: Tag::class, inversedBy: 'questions')]
     private $tags;
 
+    /**
+     * Category.
+     */
     #[ORM\ManyToOne(targetEntity: Category::class, inversedBy: 'questions')]
     #[ORM\JoinColumn(nullable: false)]
-    private $category;
+    private ?Category $category = null;
 
     /**
      * Author.
@@ -44,22 +68,35 @@ class Question
     #[Assert\Type(User::class)]
     private ?User $author;
 
+    /**
+     * Question constructor.
+     */
+    #[Pure]
     public function __construct()
     {
         $this->answers = new ArrayCollection();
         $this->tags = new ArrayCollection();
     }
 
+    /**
+     * Getter for Id.
+     */
     public function getId(): ?int
     {
         return $this->id;
     }
 
+    /**
+     * Getter for title.
+     */
     public function getTitle(): ?string
     {
         return $this->title;
     }
 
+    /**
+     * Setter for title.
+     */
     public function setTitle(string $title): self
     {
         $this->title = $title;
@@ -67,12 +104,15 @@ class Question
         return $this;
     }
 
-    public function getCreatedAt(): ?\DateTimeInterface
+    /**
+     * Getter for created at.
+     */
+    public function getCreatedAt(): ?DateTimeInterface
     {
         return $this->createdAt;
     }
 
-    public function setCreatedAt(\DateTimeInterface $createdAt): self
+    public function setCreatedAt(DateTimeInterface $createdAt): self
     {
         $this->createdAt = $createdAt;
 
@@ -97,6 +137,9 @@ class Question
         return $this;
     }
 
+    /**
+     * Remove answer.
+     */
     public function removeAnswer(Answer $answer): self
     {
         if ($this->answers->removeElement($answer)) {
@@ -126,6 +169,9 @@ class Question
         return $this;
     }
 
+    /**
+     * Remove Tag.
+     */
     public function removeTag(Tag $tag): self
     {
         $this->tags->removeElement($tag);
@@ -133,11 +179,17 @@ class Question
         return $this;
     }
 
+    /**
+     * Getter for category.
+     */
     public function getCategory(): ?Category
     {
         return $this->category;
     }
 
+    /**
+     * Setter for category.
+     */
     public function setCategory(?Category $category): self
     {
         $this->category = $category;
@@ -145,11 +197,17 @@ class Question
         return $this;
     }
 
+    /**
+     * Getter for author.
+     */
     public function getAuthor(): ?User
     {
         return $this->author;
     }
 
+    /**
+     * Setter for author.
+     */
     public function setAuthor(?User $author): self
     {
         $this->author = $author;

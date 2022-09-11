@@ -77,7 +77,7 @@ class QuestionRepository extends ServiceEntityRepository
     {
         $queryBuilder = $this->queryAll();
 
-        $queryBuilder->andWhere('task.author = :author')
+        $queryBuilder->andWhere('question.author = :author')
             ->setParameter('author', $user);
 
         return $queryBuilder;

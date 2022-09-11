@@ -94,14 +94,5 @@ class TagRepository extends ServiceEntityRepository
 //            ->getOneOrNullResult()
 //        ;
 //    }
-    /**
-     * Find by title.
-     *
-     * @param string $title Tag title
-     *
-     * @return Tag|null Tag entity
-     */
-    public function findOneByTitle(string $tagName)
-    {
-    }
+
 }
