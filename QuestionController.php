@@ -61,7 +61,23 @@ class QuestionController extends AbstractController
 
         return $this->render('question/index.html.twig', ['pagination' => $pagination]);
     }
+    /**
+     * Get filters from request.
+     *
+     * @param Request $request HTTP request
+     *
+     * @return array<string, int> Array of filters
+     *
+     * @psalm-return array{category_id: int, tag_id: int, status_id: int}
+     */
+    private function getFilters(Request $request): array
+    {
+        $filters = [];
+        $filters['category_id'] = $request->query->getInt('filters_category_id');
+        $filters['tag_id'] = $request->query->getInt('filters_tag_id');
 
+        return $filters;
+    }
     /**
      * Show action.
      *

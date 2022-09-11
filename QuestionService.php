@@ -27,15 +27,25 @@ abstract class QuestionService implements QuestionServiceInterface
     private PaginatorInterface $paginator;
 
     /**
+     * Category service.
+     */
+    private CategoryService $categoryService;
+
+    /**
      * Constructor.
      *
-     * @param QuestionRepository $questionRepository Question repository
-     * @param PaginatorInterface $paginator          Paginator
+     * @param CategoryServiceInterface $categoryService Category service
+     * @param PaginatorInterface       $paginator       Paginator
+     * @param QuestionRepository       $questionRepository  Question Repository
      */
-    public function __construct(QuestionRepository $questionRepository, PaginatorInterface $paginator)
-    {
-        $this->questionRepository = $questionRepository;
+    public function __construct(
+        CategoryServiceInterface $categoryService,
+        PaginatorInterface $paginator,
+        QuestionRepository $questionRepository
+    ) {
+        $this->categoryService = $categoryService;
         $this->paginator = $paginator;
+        $this->questionRepository = $questionRepository;
     }
 
 
@@ -56,6 +66,27 @@ abstract class QuestionService implements QuestionServiceInterface
             $page,
             QuestionRepository::PAGINATOR_ITEMS_PER_PAGE
         );
+    }
+    /**
+     * Prepare filters for the recipes list.
+     *
+     * @param array $filters Raw filters from request
+     *
+     * @return array Result array of filters
+     */
+    private function prepareFilters(array $filters): array
+    {
+        $resultFilters = [];
+        if (isset($filters['category_id']) && is_numeric($filters['category_id'])) {
+            $category = $this->categoryService->findOneById(
+                $filters['category_id']
+            );
+            if (null !== $category) {
+                $resultFilters['category'] = $category;
+            }
+        }
+
+        return $resultFilters;
     }
 
 
