@@ -1,0 +1,12 @@
+{% block body %}
+    {% include 'default/_form.html.twig' with {
+        page_title: 'title_user_edit'|trans({'%email%': user.email|default('')}),
+        attr: {
+            method: 'PUT',
+            action: url('user_edit', {'id': user.id}),
+        },
+        form: form,
+        submit_label: 'action_save'|trans,
+        back_to_list_path: 'question_index',
+    } %}
+{% endblock %}

@@ -198,6 +198,28 @@
                 <source>title_user_edit</source>
                 <target>User edit</target>
             </trans-unit>
+            <trans-unit id="title_user_delete">
+                <source>title_user_delete</source>
+                <target>User delete</target>
+            </trans-unit>
+            <trans-unit id="message_empty_list">
+                <source>message_empty_list</source>
+                <target>Empty list</target>
+            </trans-unit>
+            <trans-unit id="title_tag_list">
+                <source>title_tag_list</source>
+                <target>Tag list</target>
+            </trans-unit>
+            <trans-unit id="title_tag_details">
+                <source>title_tag_details</source>
+                <target>Tag details</target>
+            </trans-unit>
+            <trans-unit id="message.success">
+                <source>message.success</source>
+                <target>Message success</target>
+            </trans-unit>
+
+
 
 
 

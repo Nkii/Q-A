@@ -203,6 +203,28 @@
                 <source>title_user_edit</source>
                 <target>Zmień hasło</target>
             </trans-unit>
+            <trans-unit id="title_user_delete">
+                <source>title_user_delete</source>
+                <target>Usuń użytkownika</target>
+            </trans-unit>
+            <trans-unit id="message_empty_list">
+                <source>message_empty_list</source>
+                <target>Pusta lista</target>
+            </trans-unit>
+            <trans-unit id="title_tag_list">
+                <source>title_tag_list</source>
+                <target>Lista tagów</target>
+            </trans-unit>
+            <trans-unit id="title_tag_details">
+                <source>title_tag_details</source>
+                <target>Szczegóły tagów</target>
+            </trans-unit>
+            <trans-unit id="message.success">
+                <source>message.success</source>
+                <target>Sukces</target>
+            </trans-unit>
+
+
 
         </body>
     </file>
